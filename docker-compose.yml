@@ -1,0 +1,75 @@
+# Hollow Knight 112% Tracker - Docker Compose
+# 
+# Services:
+#   - frontend: React app served via Nginx (port 11200)
+#   - backend: FastAPI server (port 8000)
+#   - db volume: Persistent storage for DuckDB database
+#
+# Usage:
+#   docker compose up -d          # Start all services
+#   docker compose down           # Stop all services
+#   docker compose logs -f        # View logs
+#   ./scripts/backup.sh           # Backup database
+
+services:
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: hk-backend
+    restart: unless-stopped
+    environment:
+      - DB_PATH=/data/hk_checklist.db
+    volumes:
+      - hk-db:/data
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/stats')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - hk-network
+
+  # React Frontend (Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: hk-frontend
+    restart: unless-stopped
+    ports:
+      - "11200:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - hk-network
+
+  # Database initialization (one-time)
+  # Runs the parser script to populate the database
+  db-init:
+    image: python:3.12-slim
+    container_name: hk-db-init
+    volumes:
+      - hk-db:/data
+      - ./:/app:ro
+    working_dir: /app
+    command: ["sh", "-c", "pip install duckdb && python /app/scripts/init_db.py"]
+    networks:
+      - hk-network
+
+# Named volumes
+volumes:
+  hk-db:
+    name: hk-tracker-db
+    driver: local
+
+# Network
+networks:
+  hk-network:
+    name: hk-tracker-network
+    driver: bridge
