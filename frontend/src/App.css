@@ -1,0 +1,77 @@
+/* App container styles - Hollow Knight Theme */
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--hk-border);
+}
+
+.app-header h1 {
+  font-size: 28px;
+  color: var(--hk-soul);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 1px;
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.items-section {
+  flex: 1;
+}
+
+.sql-section {
+  margin-top: 24px;
+}
+
+.error-message {
+  padding: 16px;
+  background: rgba(255, 136, 68, 0.15);
+  border: 1px solid var(--hk-infected);
+  border-radius: 8px;
+  color: var(--hk-infected);
+  margin: 16px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app {
+    padding: 16px;
+  }
+
+  .app-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .app-header h1 {
+    font-size: 22px;
+  }
+
+  .header-icon {
+    width: 32px;
+    height: 32px;
+  }
+}

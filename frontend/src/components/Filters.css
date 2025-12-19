@@ -1,0 +1,73 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px;
+  background: var(--hk-dark);
+  border-radius: 8px;
+  align-items: flex-end;
+  border: 1px solid var(--hk-border);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label {
+  font-size: 11px;
+  color: var(--hk-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.filter-group select,
+.filter-group input {
+  padding: 10px 12px;
+  background: var(--hk-deep);
+  border: 1px solid var(--hk-border);
+  border-radius: 6px;
+  color: var(--hk-pale);
+  font-size: 14px;
+  min-width: 160px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.filter-group select:hover,
+.filter-group input:hover {
+  border-color: var(--hk-shade);
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: var(--hk-lifeblood);
+  box-shadow: 0 0 0 3px rgba(74, 157, 204, 0.2);
+}
+
+.filter-search {
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-search input {
+  width: 100%;
+}
+
+.filter-reset {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid var(--hk-border);
+  border-radius: 6px;
+  color: var(--hk-muted);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-reset:hover {
+  background: var(--hk-shade);
+  color: var(--hk-soul);
+  border-color: var(--hk-dim);
+}

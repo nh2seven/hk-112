@@ -1,0 +1,207 @@
+.table-container {
+  overflow-x: auto;
+  background: var(--hk-dark);
+  border-radius: 8px;
+  margin-top: 16px;
+  border: 1px solid var(--hk-border);
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.items-table th,
+.items-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--hk-border);
+}
+
+.items-table th {
+  background: var(--hk-deep);
+  color: var(--hk-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+  position: sticky;
+  top: 0;
+}
+
+.items-table tbody tr {
+  transition: background 0.2s;
+}
+
+.items-table tbody tr:hover {
+  background: var(--hk-shade);
+}
+
+/* Found/Not Found row styling */
+.row-found {
+  opacity: 0.6;
+}
+
+.row-found td {
+  text-decoration: line-through;
+  text-decoration-color: var(--hk-lifeblood);
+}
+
+.row-found .col-found,
+.row-found .col-link {
+  text-decoration: none;
+}
+
+.row-not-found {
+  background: transparent;
+}
+
+/* Column widths */
+.col-found {
+  width: 60px;
+  text-align: center;
+}
+
+.col-id {
+  width: 50px;
+  color: var(--hk-dim);
+}
+
+.col-name {
+  min-width: 150px;
+  font-weight: 500;
+  color: var(--hk-soul);
+}
+
+.col-category {
+  width: 120px;
+}
+
+.col-region {
+  width: 140px;
+}
+
+.col-info {
+  max-width: 300px;
+}
+
+.col-link {
+  width: 70px;
+  text-align: center;
+}
+
+/* Checkbox styling */
+.items-table input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--hk-lifeblood);
+}
+
+/* Category badges - Hollow Knight themed */
+.category-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.category-boss {
+  background: linear-gradient(135deg, #8b0000, #a52a2a);
+  color: var(--hk-radiance);
+}
+
+.category-charm {
+  background: linear-gradient(135deg, #7a5c30, #c9a227);
+  color: var(--hk-void);
+}
+
+.category-ability {
+  background: linear-gradient(135deg, #2a4a6a, #4a9dcc);
+  color: var(--hk-radiance);
+}
+
+.category-spell {
+  background: linear-gradient(135deg, #3d3d5c, #6a6a8c);
+  color: var(--hk-soul);
+}
+
+.category-mask-shard {
+  background: linear-gradient(135deg, #1a3a3a, #2a5a5a);
+  color: var(--hk-soul);
+}
+
+.category-vessel-fragment {
+  background: linear-gradient(135deg, #2a2a4a, #4a4a7a);
+  color: var(--hk-soul);
+}
+
+.category-quest-item {
+  background: linear-gradient(135deg, #5a4a20, #8a7a40);
+  color: var(--hk-radiance);
+}
+
+.category-quest {
+  background: linear-gradient(135deg, #4a3a5a, #6a5a7a);
+  color: var(--hk-soul);
+}
+
+.category-warrior\'s-dream {
+  background: linear-gradient(135deg, #5a2a4a, #8a4a7a);
+  color: var(--hk-radiance);
+}
+
+.category-dreamer {
+  background: linear-gradient(135deg, #3a3a5a, #5a5a8a);
+  color: var(--hk-radiance);
+}
+
+.category-nail-art {
+  background: linear-gradient(135deg, #3a3a3a, #5a5a5a);
+  color: var(--hk-soul);
+}
+
+.category-trial {
+  background: linear-gradient(135deg, #6a2a2a, #9a4a4a);
+  color: var(--hk-radiance);
+}
+
+/* Map link */
+.map-link {
+  color: var(--hk-lifeblood);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.map-link:hover {
+  color: var(--hk-radiance);
+}
+
+/* Information text */
+.info-text {
+  font-size: 12px;
+  color: var(--hk-pale);
+  line-height: 1.5;
+}
+
+.info-text p {
+  margin: 4px 0;
+}
+
+.info-text strong {
+  color: var(--hk-soul);
+}
+
+/* Loading and empty states */
+.loading,
+.no-items {
+  padding: 48px;
+  text-align: center;
+  color: var(--hk-muted);
+  font-size: 16px;
+}

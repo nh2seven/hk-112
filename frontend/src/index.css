@@ -1,0 +1,63 @@
+/* Global styles - Hollow Knight Theme */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Hollow Knight color palette */
+  --hk-void: #0a0a0f;
+  --hk-deep: #0f1015;
+  --hk-dark: #151520;
+  --hk-shadow: #1a1a28;
+  --hk-shade: #252535;
+  --hk-soul: #e8e8f0;
+  --hk-pale: #c0c0d0;
+  --hk-muted: #808095;
+  --hk-dim: #505065;
+  --hk-lifeblood: #4a9dcc;
+  --hk-charm: #c9a227;
+  --hk-geo: #f0d060;
+  --hk-infected: #ff8844;
+  --hk-radiance: #fff4e0;
+  --hk-border: #2a2a3a;
+  
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: var(--hk-pale);
+  background-color: var(--hk-void);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(30, 30, 50, 0.4) 0%, transparent 60%),
+    var(--hk-void);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  color: var(--hk-soul);
+}
+
+a {
+  color: var(--hk-lifeblood);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--hk-radiance);
+  text-decoration: none;
+}

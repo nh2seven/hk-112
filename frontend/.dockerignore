@@ -1,0 +1,41 @@
+# Docker ignore file
+# Prevents unnecessary files from being included in Docker builds
+
+# Git
+.git
+.gitignore
+
+# Node
+node_modules
+npm-debug.log*
+
+# Build outputs
+dist
+build
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+backups/
+db/
+*.db
+
+# Documentation
+*.md
+!README.md
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.venv
+venv

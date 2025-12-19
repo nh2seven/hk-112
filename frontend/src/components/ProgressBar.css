@@ -1,0 +1,52 @@
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.progress-stats {
+  font-size: 16px;
+  color: var(--hk-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.progress-found {
+  color: var(--hk-soul);
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+}
+
+.progress-separator {
+  color: var(--hk-dim);
+}
+
+.progress-total {
+  color: var(--hk-muted);
+}
+
+.progress-percent {
+  color: var(--hk-dim);
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.progress-bar {
+  width: 200px;
+  height: 12px;
+  background: var(--hk-shade);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--hk-border);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--hk-lifeblood), var(--hk-soul));
+  border-radius: 6px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(74, 157, 204, 0.4);
+}
