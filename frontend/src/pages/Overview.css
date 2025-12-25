@@ -141,60 +141,52 @@
   letter-spacing: 1px;
 }
 
-/* Secondary Progress Bars (Region/Category) */
-.secondary-progress-item {
-  padding: 0;
-}
-
-.secondary-progress-header {
+/* Top Stats (Most Completed Region/Category) */
+.top-stat-item {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+  flex-direction: column;
+  padding: 16px;
+  background: var(--hk-shadow);
+  border: 1px solid var(--hk-border);
+  border-radius: 10px;
+  transition: all 0.2s ease;
 }
 
-.secondary-progress-label {
-  font-size: 15px;
-  color: var(--hk-pale);
-  font-weight: 500;
+.top-stat-item.clickable {
+  cursor: pointer;
 }
 
-.secondary-progress-percent {
-  font-size: 20px;
+.top-stat-item.clickable:hover {
+  border-color: var(--hk-soul);
+  background: var(--hk-shade);
+  transform: translateY(-2px);
+}
+
+.top-stat-label {
+  font-size: 12px;
+  color: var(--hk-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.top-stat-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--hk-soul);
+  margin-bottom: 8px;
+}
+
+.top-stat-percent {
+  font-size: 28px;
   font-weight: 700;
-  color: var(--hk-lifeblood);
-  font-family: 'Cinzel', serif;
+  color: var(--hk-soul);
+  margin-bottom: 4px;
 }
 
-.secondary-progress-count {
+.top-stat-count {
   font-size: 13px;
   color: var(--hk-muted);
-  margin-top: 8px;
-  text-align: right;
-}
-
-.secondary-progress-bar {
-  height: 10px;
-  background: var(--hk-shade);
-  border-radius: 5px;
-  overflow: hidden;
-  border: 1px solid var(--hk-border);
-}
-
-.secondary-progress-fill {
-  height: 100%;
-  border-radius: 5px;
-  transition: width 0.3s ease;
-}
-
-.secondary-progress-fill.regions {
-  background: linear-gradient(90deg, var(--hk-charm), var(--hk-geo));
-  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
-}
-
-.secondary-progress-fill.categories {
-  background: linear-gradient(90deg, #7b68ee, #9370db);
-  box-shadow: 0 0 8px rgba(123, 104, 238, 0.4);
 }
 
 /* Stats Grid */
@@ -253,7 +245,7 @@
 
 .stat-card-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--hk-lifeblood), var(--hk-soul));
+  background: var(--hk-soul);
   border-radius: 4px;
   transition: width 0.3s ease;
 }

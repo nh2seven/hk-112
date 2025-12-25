@@ -45,8 +45,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--hk-lifeblood), var(--hk-soul));
+  background: var(--hk-soul);
   border-radius: 6px;
   transition: width 0.3s ease;
-  box-shadow: 0 0 10px rgba(74, 157, 204, 0.4);
 }
