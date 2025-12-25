@@ -8,7 +8,7 @@
  * - Total items found vs total
  */
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ProgressBar } from '../components/ProgressBar'
 import { Stats, RegionStats, CategoryStats } from '../types'
@@ -22,6 +22,17 @@ export function Overview() {
   const [categoryStats, setCategoryStats] = useState<CategoryStats[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  // Calculate completed regions/categories
+  const completedRegions = useMemo(() => {
+    const completed = regionStats.filter(r => r.completion_percent === 100).length
+    return { completed, total: regionStats.length }
+  }, [regionStats])
+
+  const completedCategories = useMemo(() => {
+    const completed = categoryStats.filter(c => c.completion_percent === 100).length
+    return { completed, total: categoryStats.length }
+  }, [categoryStats])
 
   useEffect(() => {
     const loadData = async () => {
@@ -65,6 +76,14 @@ export function Overview() {
     return <div className="overview-error">No statistics available</div>
   }
 
+  const regionsPercent = completedRegions.total > 0 
+    ? Math.round((completedRegions.completed / completedRegions.total) * 100) 
+    : 0
+  
+  const categoriesPercent = completedCategories.total > 0 
+    ? Math.round((completedCategories.completed / completedCategories.total) * 100) 
+    : 0
+
   return (
     <div className="overview">
       <header className="overview-header">
@@ -91,6 +110,39 @@ export function Overview() {
             <div className="stat-item">
               <span className="stat-value total">{stats.total}</span>
               <span className="stat-label">Total Items</span>
+            </div>
+          </div>
+          
+          {/* Secondary Progress Bars */}
+          <div className="secondary-progress">
+            <div className="secondary-progress-item">
+              <div className="secondary-progress-header">
+                <span className="secondary-progress-label">Regions Completed</span>
+                <span className="secondary-progress-count">
+                  {completedRegions.completed} / {completedRegions.total}
+                </span>
+              </div>
+              <div className="secondary-progress-bar">
+                <div 
+                  className="secondary-progress-fill regions"
+                  style={{ width: `${regionsPercent}%` }}
+                />
+              </div>
+            </div>
+            
+            <div className="secondary-progress-item">
+              <div className="secondary-progress-header">
+                <span className="secondary-progress-label">Categories Completed</span>
+                <span className="secondary-progress-count">
+                  {completedCategories.completed} / {completedCategories.total}
+                </span>
+              </div>
+              <div className="secondary-progress-bar">
+                <div 
+                  className="secondary-progress-fill categories"
+                  style={{ width: `${categoriesPercent}%` }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -155,76 +207,6 @@ export function Overview() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Summary Table */}
-      <section className="overview-section">
-        <h2>Detailed Summary</h2>
-        <div className="summary-tables">
-          <div className="summary-table-container">
-            <h3>By Region</h3>
-            <table className="summary-table">
-              <thead>
-                <tr>
-                  <th>Region</th>
-                  <th>Found</th>
-                  <th>Total</th>
-                  <th>Progress</th>
-                </tr>
-              </thead>
-              <tbody>
-                {regionStats.map((region) => (
-                  <tr 
-                    key={region.region} 
-                    className="clickable-row"
-                    onClick={() => handleRegionClick(region.region)}
-                  >
-                    <td>{region.region}</td>
-                    <td className="found">{region.found_count}</td>
-                    <td>{region.total}</td>
-                    <td>
-                      <span className={`progress-badge ${region.completion_percent === 100 ? 'complete' : ''}`}>
-                        {region.completion_percent}%
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          
-          <div className="summary-table-container">
-            <h3>By Category</h3>
-            <table className="summary-table">
-              <thead>
-                <tr>
-                  <th>Category</th>
-                  <th>Found</th>
-                  <th>Total</th>
-                  <th>Progress</th>
-                </tr>
-              </thead>
-              <tbody>
-                {categoryStats.map((category) => (
-                  <tr 
-                    key={category.category} 
-                    className="clickable-row"
-                    onClick={() => handleCategoryClick(category.category)}
-                  >
-                    <td>{category.category}</td>
-                    <td className="found">{category.found_count}</td>
-                    <td>{category.total}</td>
-                    <td>
-                      <span className={`progress-badge ${category.completion_percent === 100 ? 'complete' : ''}`}>
-                        {category.completion_percent}%
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </div>
       </section>
     </div>

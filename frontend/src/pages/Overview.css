@@ -116,6 +116,64 @@
   letter-spacing: 1px;
 }
 
+/* Secondary Progress Bars */
+.secondary-progress {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hk-border);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.secondary-progress-item {
+  padding: 0 16px;
+}
+
+.secondary-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.secondary-progress-label {
+  font-size: 14px;
+  color: var(--hk-pale);
+  font-weight: 500;
+}
+
+.secondary-progress-count {
+  font-size: 14px;
+  color: var(--hk-muted);
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+}
+
+.secondary-progress-bar {
+  height: 10px;
+  background: var(--hk-shade);
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--hk-border);
+}
+
+.secondary-progress-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.secondary-progress-fill.regions {
+  background: linear-gradient(90deg, var(--hk-charm), var(--hk-geo));
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
+}
+
+.secondary-progress-fill.categories {
+  background: linear-gradient(90deg, #7b68ee, #9370db);
+  box-shadow: 0 0 8px rgba(123, 104, 238, 0.4);
+}
+
 /* Stats Grid */
 .stats-grid {
   display: grid;
@@ -193,82 +251,6 @@
   color: var(--hk-dim);
 }
 
-/* Summary Tables */
-.summary-tables {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 24px;
-}
-
-.summary-table-container {
-  background: var(--hk-dark);
-  border: 1px solid var(--hk-border);
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.summary-table-container h3 {
-  font-size: 16px;
-  color: var(--hk-pale);
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--hk-border);
-}
-
-.summary-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.summary-table th,
-.summary-table td {
-  padding: 10px 12px;
-  text-align: left;
-}
-
-.summary-table th {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--hk-muted);
-  border-bottom: 1px solid var(--hk-border);
-}
-
-.summary-table td {
-  font-size: 14px;
-  color: var(--hk-pale);
-  border-bottom: 1px solid var(--hk-shade);
-}
-
-.summary-table td.found {
-  color: var(--hk-lifeblood);
-  font-weight: 600;
-}
-
-.clickable-row {
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.clickable-row:hover {
-  background: var(--hk-shadow);
-}
-
-.progress-badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 600;
-  background: var(--hk-shade);
-  color: var(--hk-muted);
-}
-
-.progress-badge.complete {
-  background: rgba(74, 157, 204, 0.2);
-  color: var(--hk-lifeblood);
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .overview {
@@ -289,11 +271,11 @@
     max-width: 300px;
   }
 
-  .stats-grid {
+  .secondary-progress {
     grid-template-columns: 1fr;
   }
 
-  .summary-tables {
+  .stats-grid {
     grid-template-columns: 1fr;
   }
 }
