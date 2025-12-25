@@ -1,48 +1,17 @@
-/* App container styles - Hollow Knight Theme */
-.app {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 24px;
-}
+/* App Layout Styles - Hollow Knight Theme */
 
-.app-header {
+/* Main layout with sidebar */
+.app-layout {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--hk-border);
+  min-height: 100vh;
 }
 
-.app-header h1 {
-  font-size: 28px;
-  color: var(--hk-soul);
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  letter-spacing: 1px;
-}
-
-.header-icon {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
-}
-
-.app-main {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.items-section {
+/* Main content area - offset by navbar width */
+.app-content {
   flex: 1;
-}
-
-.sql-section {
-  margin-top: 24px;
+  margin-left: 220px;
+  min-height: 100vh;
+  background: var(--hk-void);
 }
 
 .error-message {
@@ -56,22 +25,7 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .app {
-    padding: 16px;
-  }
-
-  .app-header {
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-  }
-
-  .app-header h1 {
-    font-size: 22px;
-  }
-
-  .header-icon {
-    width: 32px;
-    height: 32px;
+  .app-content {
+    margin-left: 60px;
   }
 }

@@ -1,0 +1,130 @@
+/* Navbar Styles */
+.navbar {
+  width: 220px;
+  min-width: 220px;
+  height: 100vh;
+  background: var(--hk-deep);
+  border-right: 1px solid var(--hk-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--hk-border);
+}
+
+.navbar-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
+}
+
+.navbar-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--hk-soul);
+  letter-spacing: 1px;
+}
+
+.navbar-links {
+  list-style: none;
+  padding: 16px 0;
+  margin: 0;
+  flex: 1;
+}
+
+.navbar-links li {
+  margin: 4px 8px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: var(--hk-muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  background: var(--hk-shade);
+  color: var(--hk-pale);
+}
+
+.nav-link.active {
+  background: linear-gradient(90deg, rgba(74, 157, 204, 0.2) 0%, transparent 100%);
+  color: var(--hk-soul);
+  border-left: 3px solid var(--hk-lifeblood);
+  margin-left: -3px;
+}
+
+.nav-icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+.nav-text {
+  white-space: nowrap;
+}
+
+.navbar-footer {
+  padding: 16px;
+  border-top: 1px solid var(--hk-border);
+  text-align: center;
+}
+
+.version {
+  font-size: 12px;
+  color: var(--hk-dim);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    width: 60px;
+    min-width: 60px;
+  }
+
+  .navbar-header {
+    padding: 16px 12px;
+    justify-content: center;
+  }
+
+  .navbar-title {
+    display: none;
+  }
+
+  .nav-text {
+    display: none;
+  }
+
+  .nav-link {
+    padding: 12px;
+    justify-content: center;
+  }
+
+  .nav-link.active {
+    margin-left: 0;
+    border-left: none;
+    border-bottom: 3px solid var(--hk-lifeblood);
+  }
+
+  .version {
+    display: none;
+  }
+}

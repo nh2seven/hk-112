@@ -26,6 +26,35 @@ export interface Stats {
   completion_percent: number
 }
 
+export interface RegionStats {
+  region: string
+  total: number
+  found_count: number
+  not_found_count: number
+  completion_percent: number
+}
+
+export interface CategoryStats {
+  category: string
+  total: number
+  found_count: number
+  not_found_count: number
+  completion_percent: number
+}
+
+export interface SessionItem extends HKItem {
+  added_at: string
+}
+
+export interface Session {
+  id: number
+  name: string
+  created_at: string
+  saved_at: string | null
+  item_count: number
+  items?: SessionItem[]
+}
+
 export interface SQLResult {
   columns: string[]
   rows: unknown[][]

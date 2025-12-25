@@ -1,0 +1,43 @@
+/* SQL Console Page Styles */
+.sql-console-page {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sql-page-header {
+  margin-bottom: 24px;
+}
+
+.sql-page-header h1 {
+  font-size: 28px;
+  color: var(--hk-soul);
+  margin-bottom: 8px;
+}
+
+.sql-page-subtitle {
+  color: var(--hk-muted);
+  font-size: 15px;
+}
+
+.sql-page-content {
+  flex: 1;
+}
+
+.sql-page-content .sql-console {
+  height: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sql-console-page {
+    padding: 16px;
+  }
+
+  .sql-page-header h1 {
+    font-size: 22px;
+  }
+}
