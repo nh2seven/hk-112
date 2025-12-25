@@ -23,15 +23,19 @@ export function Overview() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Calculate completed regions/categories
-  const completedRegions = useMemo(() => {
-    const completed = regionStats.filter(r => r.completion_percent === 100).length
-    return { completed, total: regionStats.length }
+  // Calculate aggregate percentages for regions/categories
+  const regionProgress = useMemo(() => {
+    const found = regionStats.reduce((sum, r) => sum + r.found_count, 0)
+    const total = regionStats.reduce((sum, r) => sum + r.total, 0)
+    const percent = total > 0 ? Math.round((found / total) * 100 * 100) / 100 : 0
+    return { found, total, percent }
   }, [regionStats])
 
-  const completedCategories = useMemo(() => {
-    const completed = categoryStats.filter(c => c.completion_percent === 100).length
-    return { completed, total: categoryStats.length }
+  const categoryProgress = useMemo(() => {
+    const found = categoryStats.reduce((sum, c) => sum + c.found_count, 0)
+    const total = categoryStats.reduce((sum, c) => sum + c.total, 0)
+    const percent = total > 0 ? Math.round((found / total) * 100 * 100) / 100 : 0
+    return { found, total, percent }
   }, [categoryStats])
 
   useEffect(() => {
@@ -76,14 +80,6 @@ export function Overview() {
     return <div className="overview-error">No statistics available</div>
   }
 
-  const regionsPercent = completedRegions.total > 0 
-    ? Math.round((completedRegions.completed / completedRegions.total) * 100) 
-    : 0
-  
-  const categoriesPercent = completedCategories.total > 0 
-    ? Math.round((completedCategories.completed / completedCategories.total) * 100) 
-    : 0
-
   return (
     <div className="overview">
       <header className="overview-header">
@@ -95,53 +91,60 @@ export function Overview() {
       <section className="overview-section overall-section">
         <h2>Overall Progress</h2>
         <div className="overall-card">
-          <div className="overall-progress">
-            <ProgressBar stats={stats} />
-          </div>
-          <div className="overall-stats">
-            <div className="stat-item">
-              <span className="stat-value found">{stats.found_count}</span>
-              <span className="stat-label">Found</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-value not-found">{stats.not_found_count}</span>
-              <span className="stat-label">Remaining</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-value total">{stats.total}</span>
-              <span className="stat-label">Total Items</span>
-            </div>
-          </div>
-          
-          {/* Secondary Progress Bars */}
-          <div className="secondary-progress">
-            <div className="secondary-progress-item">
-              <div className="secondary-progress-header">
-                <span className="secondary-progress-label">Regions Completed</span>
-                <span className="secondary-progress-count">
-                  {completedRegions.completed} / {completedRegions.total}
-                </span>
+          <div className="overall-layout">
+            {/* Left: Overall Progress */}
+            <div className="overall-left">
+              <div className="overall-progress">
+                <ProgressBar stats={stats} />
               </div>
-              <div className="secondary-progress-bar">
-                <div 
-                  className="secondary-progress-fill regions"
-                  style={{ width: `${regionsPercent}%` }}
-                />
+              <div className="overall-stats">
+                <div className="stat-item">
+                  <span className="stat-value found">{stats.found_count}</span>
+                  <span className="stat-label">Found</span>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-value not-found">{stats.not_found_count}</span>
+                  <span className="stat-label">Remaining</span>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-value total">{stats.total}</span>
+                  <span className="stat-label">Total Items</span>
+                </div>
               </div>
             </div>
             
-            <div className="secondary-progress-item">
-              <div className="secondary-progress-header">
-                <span className="secondary-progress-label">Categories Completed</span>
-                <span className="secondary-progress-count">
-                  {completedCategories.completed} / {completedCategories.total}
-                </span>
+            {/* Right: Region & Category Progress */}
+            <div className="overall-right">
+              <div className="secondary-progress-item">
+                <div className="secondary-progress-header">
+                  <span className="secondary-progress-label">Region Progress</span>
+                  <span className="secondary-progress-percent">{regionProgress.percent}%</span>
+                </div>
+                <div className="secondary-progress-bar">
+                  <div 
+                    className="secondary-progress-fill regions"
+                    style={{ width: `${regionProgress.percent}%` }}
+                  />
+                </div>
+                <div className="secondary-progress-count">
+                  {regionProgress.found} / {regionProgress.total} items
+                </div>
               </div>
-              <div className="secondary-progress-bar">
-                <div 
-                  className="secondary-progress-fill categories"
-                  style={{ width: `${categoriesPercent}%` }}
-                />
+              
+              <div className="secondary-progress-item">
+                <div className="secondary-progress-header">
+                  <span className="secondary-progress-label">Category Progress</span>
+                  <span className="secondary-progress-percent">{categoryProgress.percent}%</span>
+                </div>
+                <div className="secondary-progress-bar">
+                  <div 
+                    className="secondary-progress-fill categories"
+                    style={{ width: `${categoryProgress.percent}%` }}
+                  />
+                </div>
+                <div className="secondary-progress-count">
+                  {categoryProgress.found} / {categoryProgress.total} items
+                </div>
               </div>
             </div>
           </div>
