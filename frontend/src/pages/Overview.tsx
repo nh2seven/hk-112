@@ -109,36 +109,35 @@ export function Overview() {
               </div>
             </div>
             
-            {/* Right: Most Completed Stats */}
-            <div className="overall-right">
-              {mostCompletedRegion && (
-                <div 
-                  className="top-stat-item clickable"
-                  onClick={() => handleRegionClick(mostCompletedRegion.region)}
-                >
-                  <span className="top-stat-label">Top Region</span>
-                  <span className="top-stat-name">{mostCompletedRegion.region}</span>
-                  <span className="top-stat-percent">{mostCompletedRegion.completion_percent}%</span>
-                  <span className="top-stat-count">
-                    {mostCompletedRegion.found_count} / {mostCompletedRegion.total}
-                  </span>
-                </div>
-              )}
-              
-              {mostCompletedCategory && (
-                <div 
-                  className="top-stat-item clickable"
-                  onClick={() => handleCategoryClick(mostCompletedCategory.category)}
-                >
-                  <span className="top-stat-label">Top Category</span>
-                  <span className="top-stat-name">{mostCompletedCategory.category}</span>
-                  <span className="top-stat-percent">{mostCompletedCategory.completion_percent}%</span>
-                  <span className="top-stat-count">
-                    {mostCompletedCategory.found_count} / {mostCompletedCategory.total}
-                  </span>
-                </div>
-              )}
-            </div>
+            {/* Top Region Card */}
+            {mostCompletedRegion && (
+              <div 
+                className="top-stat-item clickable"
+                onClick={() => handleRegionClick(mostCompletedRegion.region)}
+              >
+                <span className="top-stat-label">Top Region</span>
+                <span className="top-stat-name">{mostCompletedRegion.region}</span>
+                <span className="top-stat-percent">{mostCompletedRegion.completion_percent}%</span>
+                <span className="top-stat-count">
+                  {mostCompletedRegion.found_count} / {mostCompletedRegion.total}
+                </span>
+              </div>
+            )}
+            
+            {/* Top Category Card */}
+            {mostCompletedCategory && (
+              <div 
+                className="top-stat-item clickable"
+                onClick={() => handleCategoryClick(mostCompletedCategory.category)}
+              >
+                <span className="top-stat-label">Top Category</span>
+                <span className="top-stat-name">{mostCompletedCategory.category}</span>
+                <span className="top-stat-percent">{mostCompletedCategory.completion_percent}%</span>
+                <span className="top-stat-count">
+                  {mostCompletedCategory.found_count} / {mostCompletedCategory.total}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </section>

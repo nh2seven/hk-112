@@ -19,9 +19,16 @@
   --hk-radiance: #fff4e0;
   --hk-border: #2a2a3a;
   
+  /* ========================================
+   * FONT SETTINGS - Adjust these to tune readability
+   * ======================================== */
+  --base-font-size: 15px;    /* Base font size (default body text) */
+  --base-font-weight: 500;   /* Base font weight: 400=normal, 500=medium, 600=semi-bold, 700=bold */
+  
   font-family: 'Cinzel', serif;
+  font-size: var(--base-font-size);
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: var(--base-font-weight);
 
   color-scheme: dark;
   color: var(--hk-pale);

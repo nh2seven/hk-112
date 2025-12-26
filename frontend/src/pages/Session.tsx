@@ -21,7 +21,8 @@ import {
   addSessionItem, 
   removeSessionItem, 
   clearSession,
-  fetchItems
+  fetchItems,
+  updateItemFound
 } from '../api'
 import './Session.css'
 
@@ -52,11 +53,11 @@ export function SessionPage() {
     }
   }, [])
 
-  // Load all items for picker
+  // Load only not-found items for picker
   const loadAllItems = useCallback(async () => {
     setItemsLoading(true)
     try {
-      const data = await fetchItems({ found: null, category: '', region: '', name: '' })
+      const data = await fetchItems({ found: false, category: '', region: '', name: '' })
       setAllItems(data)
     } catch (err) {
       console.error('Failed to load items:', err)
@@ -169,6 +170,42 @@ export function SessionPage() {
       await loadSessions()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to clear session')
+    }
+  }
+
+  // Toggle item found status
+  const handleToggleFound = async (item: HKItem) => {
+    if (!activeSession) return
+    
+    const newFound = !item.found
+    
+    // Optimistic update
+    setActiveSession(prev => {
+      if (!prev) return prev
+      return {
+        ...prev,
+        items: prev.items?.map(i => 
+          i.id === item.id ? { ...i, found: newFound } : i
+        )
+      }
+    })
+
+    try {
+      await updateItemFound(item.id, newFound)
+      // Reload to update allItems cache (so picker reflects new state)
+      setAllItems([])
+    } catch (err) {
+      // Rollback on failure
+      setActiveSession(prev => {
+        if (!prev) return prev
+        return {
+          ...prev,
+          items: prev.items?.map(i => 
+            i.id === item.id ? { ...i, found: !newFound } : i
+          )
+        }
+      })
+      setError(err instanceof Error ? err.message : 'Failed to update item')
     }
   }
 
@@ -349,9 +386,13 @@ export function SessionPage() {
                           </td>
                           <td>{item.region}</td>
                           <td>
-                            <span className={`status-badge ${item.found ? 'found' : 'not-found'}`}>
+                            <button 
+                              className={`status-toggle ${item.found ? 'found' : 'not-found'}`}
+                              onClick={() => handleToggleFound(item)}
+                              title={item.found ? 'Mark as not found' : 'Mark as found'}
+                            >
                               {item.found ? '✓ Found' : '○ Not Found'}
-                            </span>
+                            </button>
                           </td>
                           {!activeSession.saved_at && (
                             <td>

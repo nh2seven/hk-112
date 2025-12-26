@@ -344,6 +344,36 @@
   color: var(--hk-muted);
 }
 
+/* Clickable status toggle */
+.status-toggle {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.status-toggle.found {
+  background: rgba(74, 157, 204, 0.2);
+  color: var(--hk-lifeblood);
+}
+
+.status-toggle.found:hover {
+  background: rgba(74, 157, 204, 0.35);
+}
+
+.status-toggle.not-found {
+  background: var(--hk-shade);
+  color: var(--hk-muted);
+}
+
+.status-toggle.not-found:hover {
+  background: var(--hk-shadow);
+  color: var(--hk-pale);
+}
+
 .btn-remove-item {
   padding: 4px 10px;
   font-size: 12px;

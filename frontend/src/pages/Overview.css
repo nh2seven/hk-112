@@ -58,56 +58,54 @@
   background: var(--hk-dark);
   border: 1px solid var(--hk-border);
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px 24px;
 }
 
-/* Left/Right Layout */
+/* Three-column Layout: Overall | Top Region | Top Category */
 .overall-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
 }
 
 .overall-left {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-right: 32px;
+  justify-content: center;
+  padding-right: 24px;
   border-right: 1px solid var(--hk-border);
 }
 
 .overall-right {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding-left: 16px;
+  display: contents;
 }
 
 .overall-progress {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   width: 100%;
 }
 
 .overall-progress .progress-bar-container {
   justify-content: center;
-  gap: 24px;
+  gap: 16px;
 }
 
 .overall-progress .progress-bar {
   width: 100%;
-  max-width: 350px;
-  height: 16px;
+  max-width: 280px;
+  height: 14px;
 }
 
 .overall-progress .progress-found {
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .overall-stats {
   display: flex;
   justify-content: center;
-  gap: 36px;
+  gap: 28px;
 }
 
 .stat-item {
@@ -116,10 +114,9 @@
 
 .stat-value {
   display: block;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 700;
-  font-family: 'Cinzel', serif;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .stat-value.found {
@@ -136,7 +133,7 @@
 
 .stat-label {
   color: var(--hk-muted);
-  font-size: 13px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -145,11 +142,13 @@
 .top-stat-item {
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  justify-content: center;
+  padding: 16px 20px;
   background: var(--hk-shadow);
   border: 1px solid var(--hk-border);
   border-radius: 10px;
   transition: all 0.2s ease;
+  min-height: 100%;
 }
 
 .top-stat-item.clickable {
@@ -267,21 +266,22 @@
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .overall-layout {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 
   .overall-left {
+    grid-column: 1 / -1;
     padding-right: 0;
     border-right: none;
-    padding-bottom: 24px;
+    padding-bottom: 20px;
     border-bottom: 1px solid var(--hk-border);
   }
 
   .overall-right {
-    padding-left: 0;
+    display: contents;
   }
 }
 
@@ -294,8 +294,12 @@
     font-size: 26px;
   }
 
+  .overall-layout {
+    grid-template-columns: 1fr;
+  }
+
   .overall-stats {
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
   }
 
